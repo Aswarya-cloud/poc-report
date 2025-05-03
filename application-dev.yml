@@ -1,0 +1,32 @@
+spring:
+  datasource:
+    url: ${DATA_URL:jdbc:mysql://127.0.0.1:3306/report-service?autoReconnect=true&useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true&createDatabaseIfNotExist=true}
+    username: ${DATA_USERNAME:adminUser}
+    password: ${DATA_PASSWORD:AdminPassword}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    hikari:
+      initialization-fail-timeout: 60000
+      connection-test-query: SELECT 1
+      maximum-pool-size: 10
+      connection-timeout: 30000
+  jpa:
+    open-in-view: false
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+    properties:
+        generate_statistics: true
+        order_inserts: true
+        order_updates: true
+        jdbc:
+          size: 100
+    hibernate:
+      ddl-auto: update
+
+
+#logging:
+#  level:
+#    org:
+#      hibernate:
+#        SQL: DEBUG
+#        tool:
+#          hbm2ddl: TRACE
+

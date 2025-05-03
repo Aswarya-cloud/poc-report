@@ -1,0 +1,67 @@
+app:
+  version: @project.version@
+  api:
+    version: 'v1'
+
+info:
+  application:
+    name: '@project.name@'
+    description: '@project.description@'
+    version: '@project.version@'
+
+management:
+  info:
+    env:
+      enabled: true
+  endpoints:
+    prometheus:
+      enable: true
+    web:
+      base-path: /actuator
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: always
+      probes:
+        enabled: true
+  health:
+    livenessState:
+      enabled: true
+    readinessState:
+      enabled: true
+
+
+  metrics:
+    enable:
+      all: true
+  prometheus:
+    metrics:
+      export:
+        enabled: true
+#spring:
+#  web:
+#    resources:
+#      add-mappings: false
+
+
+server:
+  servlet:
+    context-path: /api/v1
+  port: 8090
+  address: 0.0.0.0
+
+spring:
+  config:
+    import: "classpath:/shared-config.yml"
+  profiles:
+    active: ${PROFILE_ACTIVE}
+  application:
+    name: AlRjhi report service
+
+logging:
+  level:
+    root: INFO
+    org.hibernate.SQL: WARN
+    org.springframework: WARN  # Less detailed logging for Spring
+
