@@ -1,0 +1,59 @@
+# Author: Abdalrhman Alkrain
+# Year: 2025
+# Version: 1.0
+
+# define the app name
+name: document-service-app
+namespace: micro-app
+
+common:
+  labels:
+    owner: abdalrhman
+    env: dev
+    app: document-service-app
+
+# Deployment
+document-app:
+  deployment:
+    replicas: 1
+    image:
+      repository: abdalrhmanalkraien
+      image-name: arb-report
+      image-version: 1.0.0
+      imagePullPolicy: IfNotPresent # could be Always, IfNotPresent, and Never
+      container-name: arb-report
+    expose-port: 8090
+    strategy:
+      type: RollingUpdate
+
+  env:
+    configMapRef: document-app-map
+    secretRef: document-app-secret
+
+  #Service
+  service:
+    labels:
+      name: document-service-app
+    port:
+      listener-port: 8090
+      expose-port: 8085
+
+#ingress
+
+#Configkey 
+  configMap:
+    data:
+      data:
+        url: "jdbc:mysql://document-db.micro-app.svc.cluster.local:3306/report-service?autoReconnect=true&useUnicode=true&character"
+      _JAVA_OPTIONS: "-Xmx2048m -Xms256m"
+      JAVA_TOOL_OPTIONS: "-Xms256m -Xmx1024m"
+      profile:
+        active: dev
+
+#Secret key
+  secret: 
+    data:
+      data:
+        username: adminUser
+        password: AdminPassword
+
