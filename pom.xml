@@ -119,7 +119,7 @@
 
 		<repository>
 			<id>nexus-snapshots</id>
-			<url>http://165.22.21.12:32557/repository/maven-snapshots/</url>
+			<url>https://nexus.aswarya.com/repository/maven-snapshots/</url>
 			<snapshots>
 				<enabled>true</enabled>
 			</snapshots>
