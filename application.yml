@@ -2,7 +2,7 @@ app:
   version: 0.0.1-SNAPSHOT
   api:
     version: 'v1'
-  tekton: '2v'
+  tekton: '21v'
 
 info:
   application:
